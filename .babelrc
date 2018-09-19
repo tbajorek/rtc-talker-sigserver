@@ -1,0 +1,28 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "modules": false,
+                "exclude": ["transform-es2015-classes"],
+                "targets": { "node": "10" }
+            }
+        ],
+        "@babel/react"
+    ],
+    "plugins": [
+        [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ],
+        ["transform-object-rest-spread"],
+        ["transform-es2015-destructuring"],
+        ["transform-class-properties"],
+        ["syntax-async-functions"],
+        ["@babel/plugin-proposal-decorators", {"legacy": true}]
+    ],
+    "ignore": ["node_modules"]
+}
