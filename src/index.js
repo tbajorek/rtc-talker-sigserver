@@ -4,8 +4,10 @@ import "@babel/polyfill";
 import Sequelize from "sequelize";
 import uuidv4 from 'uuid/v4';
 
-const sequelize = new Sequelize('rtctalker', 'rtctalker', 'rtctalker', {
-    dialect: 'mysql',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    dialect: process.env.DB_DIALECT,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     define: {
         timestamps: false
     }
@@ -26,7 +28,7 @@ const Online = sequelize.define('online', {
 });
 
 const server = new WsServer({
-    port: 9876,
+    port: process.env.SIG_PORT,
     temporaryTime: 15,
     confirmType: 'creator',
 });
@@ -35,21 +37,22 @@ server.on('server.started', (e) => {
     console.log('server.started');
 });
 server.on('user.checked', (e) => {
-    const {user, message, sourceConnection} = e.data;
+    const {user, message, sourceConnection} = e.data;console.log(e.data);
     Session.findOne({where: { user_id: e.data.user.id}}).then(session => {
-        if(session === null && !message.user.token) {
+        if(session === null && !user.token) {
             server.dispatch('user.checked.success', {user, sourceConnection, message});
-        } else if(session === null || session.token !== message.user.token || session.validUntil.getTime() < (new Date()).getTime()) {
+        } else if(session === null || session.token !== user.token || session.validUntil.getTime() < (new Date()).getTime()) {
             server.dispatch('user.checked.failure', {sourceConnection, user, messageData: {code: Error.codes.PERM_REQ, details: {user: `${user.name} ${user.surname}`, action: 'login'}}});
         } else {
             server.dispatch('user.checked.success', {user, sourceConnection, message});
         }
     });
 });
-server.on('user.connected', (e) => {
-    if(!!e.data.message.user.token) {
-        Online.build({id: uuidv4(), user_id: e.data.user.id}).save().then(() => {
-            console.log('user '+e.data.user.id+' is online');
+server.on('user.connected', (e) => {console.log(e.data);
+    if(!!e.data.user.token) {
+        const user_id = e.data.user.id;
+        Online.build({id: uuidv4(), user_id}).save().then(() => {
+            console.log('user '+user_id+' is online');
         })
     }
 });
