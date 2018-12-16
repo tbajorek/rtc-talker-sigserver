@@ -37,7 +37,7 @@ server.on('server.started', (e) => {
     console.log('server.started');
 });
 server.on('user.checked', (e) => {
-    const {user, message, sourceConnection} = e.data;console.log(e.data);
+    const {user, message, sourceConnection} = e.data;
     Session.findOne({where: { user_id: e.data.user.id}}).then(session => {
         if(session === null && !user.token) {
             server.dispatch('user.checked.success', {user, sourceConnection, message});
@@ -48,7 +48,7 @@ server.on('user.checked', (e) => {
         }
     });
 });
-server.on('user.connected', (e) => {console.log(e.data);
+server.on('user.connected', (e) => {
     if(!!e.data.user.token) {
         const user_id = e.data.user.id;
         Online.build({id: uuidv4(), user_id}).save().then(() => {
