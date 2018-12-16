@@ -2365,6 +2365,16 @@ domutils@1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
+dotenv-webpack@^1.5.7:
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.5.7.tgz#c44395ab21d1fd28d79a90942a7b14b1debd145f"
+  dependencies:
+    dotenv "^5.0.1"
+
+dotenv@^5.0.1:
+  version "5.0.1"
+  resolved "http://registry.npmjs.org/dotenv/-/dotenv-5.0.1.tgz#a5317459bd3d79ab88cff6e44057a6a3fbb1fcef"
+
 dottie@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.0.tgz#da191981c8b8d713ca0115d5898cf397c2f0ddd0"
@@ -4910,9 +4920,9 @@ tbrtc-common@^0.0.4:
     webpack-node-externals "^1.7.2"
     webrtc-adapter "^6.1.0"
 
-tbrtc-server@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/tbrtc-server/-/tbrtc-server-1.0.2.tgz#1c80bc4b97d68c9599c0df31418e5b50fe646bb8"
+tbrtc-server@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/tbrtc-server/-/tbrtc-server-1.0.4.tgz#5888b2beaf573ad04089864a06552e6f2b08a28f"
   dependencies:
     app-root-path "^2.1.0"
     bufferutil "^4.0.0"

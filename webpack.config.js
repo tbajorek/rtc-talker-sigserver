@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
-
+const Dotenv = require('dotenv-webpack');
 const root = require('app-root-path');
 
 const includePaths = [
@@ -23,7 +23,7 @@ const config = {
     },
     target: 'node',
     plugins: [
-        namedPlugin, definePlugin, new webpack.IgnorePlugin(/vertx/),
+        namedPlugin, new Dotenv(), definePlugin, new webpack.IgnorePlugin(/vertx/),
     ],
     module: {
         rules: [
