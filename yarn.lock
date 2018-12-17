@@ -4920,9 +4920,10 @@ tbrtc-common@^0.0.4:
     webpack-node-externals "^1.7.2"
     webrtc-adapter "^6.1.0"
 
-tbrtc-server@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/tbrtc-server/-/tbrtc-server-1.0.5.tgz#76866b047a7bf58036b42dc3dd2bec236491a468"
+tbrtc-server@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/tbrtc-server/-/tbrtc-server-1.0.7.tgz#cc6703dd4dba51d0d43dbd40228ece3708be777b"
+  integrity sha512-9Rkqz7LV0sxwTIXv/hfLGusMLEG1RAv605uYJc2QXzrW6mtEExTloTULYhIJgnqpkPQzBwNjxBOLEDdjBT/lFA==
   dependencies:
     app-root-path "^2.1.0"
     bufferutil "^4.0.0"
