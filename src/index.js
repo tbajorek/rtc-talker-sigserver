@@ -34,7 +34,7 @@ const server = new WsServer({
 });
 
 server.on('server.started', (e) => {
-    console.log('server.started');
+    console.log('Serwer został uruchomiony');
 });
 server.on('user.checked', (e) => {
     const {user, message, sourceConnection} = e.data;
@@ -52,17 +52,20 @@ server.on('user.connected', (e) => {
     if(!!e.data.user.token) {
         const user_id = e.data.user.id;
         Online.build({id: uuidv4(), user_id}).save().then(() => {
-            console.log('user '+user_id+' is online');
+            console.log('Użytkownik '+user_id+' został połączony');
         })
     }
 });
+server.on('user.communication', (e) => {
+    console.log(e);
+});
 server.on('user.disconnected', (e) => {
-    console.log('user.disconnected: '+e.data.user.id);
+    console.log('Użytkownik : '+e.data.user.id + ' został rozłączony');
     Online.findAll({where: { user_id: e.data.user.id}}).then(online => {
         online.forEach(singleOnline => {
             singleOnline.destroy();
         });
-        console.log('user '+e.data.user.id+' is offline');
+        console.log('Sesja użytkownika '+e.data.user.id+' jest usunięta z bazy');
     });
 });
 
